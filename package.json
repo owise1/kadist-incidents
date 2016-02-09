@@ -1,5 +1,5 @@
 {
-  "name": "kadist-monument",
+  "name": "kadist-incidents",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,6 +7,7 @@
   "author": "owise1",
   "license": "MIT",
   "dependencies": {
+    "jquery-panelsnap": "^0.15.1"
   },
   "browserify": {
     "trandform": [
@@ -16,9 +17,6 @@
   "devDependencies": {
     "debowerify": "^1.3.1",
     "express": "^4.12.3",
-    "imagesloaded": "^3.1.8",
-    "jquery": "^2.1.4",
-    "morsecode": "^1.0.0",
     "q": "^1.3.0",
     "ramda": "^0.13.0",
     "browserify": "^10.0.0",

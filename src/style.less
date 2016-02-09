@@ -3,5 +3,97 @@ html,body{
   padding: 0;
   margin: 0;
 }
+*{
+  box-sizing: border-box;
+}
 body{
+  color: #fff;
+  font-size:  18px;
+  line-height:  1.2em;
+  font-family: "schoolbook-web",serif;
+  a{
+    color: #ccc;
+  }
+  .cover{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: #000;
+    opacity: 0;
+    transition: all 0.5s;
+    &.active{
+      opacity: 0.5;
+    }
+  }
+  > section{
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative; 
+    &.vcenter{
+      display: flex;
+      align-items: center;
+      > div{
+        display: inline-block;
+        margin: auto;
+        text-align: center; 
+      }
+    }
+    .audio{
+      position: absolute; 
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 100px;
+      background: url(../images/noun_101594_cc.svg) no-repeat;
+      z-index: 20;
+    }
+    .caption,
+    .text{
+      position: absolute; 
+      bottom: 0;
+      width: 100%;
+      padding: 15px;
+      z-index: 20;
+      .icon{
+        width: 100px;
+        height: 100px;
+        background: url(../images/noun_4502.svg) 13px 34px no-repeat;
+        background-size: 50%;
+        position: absolute; 
+        bottom: 0;
+        left: 0;
+        z-index: 21;
+      }
+      .et{
+        opacity: 0;
+        transition: all 0.5s;
+        max-height: 0;
+        overflow: hidden;
+        padding-bottom: 50px;
+      }
+      &:hover .et{
+        max-height: 5000px;
+        opacity: 1;
+      }
+      p{
+
+      }
+    }
+    .caption{
+      .icon{
+        left: auto;
+        right: 0;
+        background: url(../images/noun_308073.svg) 33px 34px no-repeat;
+        background-size: 50%;
+      }
+    }
+
+  }
 }
