@@ -26,7 +26,8 @@ gulp.task('js', function(){
   return gulp.src(paths.watchBase + 'site.js')
   .pipe(babel())
   .pipe(browserify({
-    insertGlobals : true
+    insertGlobals : true,
+    transform : 'debowerify'
   }))
   .pipe(gulp.dest(paths.destBase + 'js'))
 });

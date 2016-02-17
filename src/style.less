@@ -10,7 +10,7 @@ body{
   color: #fff;
   font-size:  18px;
   line-height:  1.2em;
-  font-family: "schoolbook-web",serif;
+  font-family: 'Fjalla One', sans-serif;
   a{
     color: #ccc;
   }
@@ -31,11 +31,13 @@ body{
   > section{
     width: 100%;
     height: 100vh;
-    background-color: #000;
     color: #fff;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative; 
+    &.title{
+      background-color: #000;
+    }
     &.vcenter{
       display: flex;
       align-items: center;
@@ -45,14 +47,27 @@ body{
         text-align: center; 
       }
     }
+    > a{
+      text-decoration: none; 
+      display: block;
+      &:hover{
+        color: yellow;
+      }
+    }
+    @linkPadding: 50px;
     .audio{
       position: absolute; 
       top: 0;
-      left: 0;
-      width: 100px;
-      height: 100px;
-      background: url(../images/noun_101594_cc.svg) no-repeat;
+      right: 0;
+      padding: @linkPadding;
+      font-size:  30px;
       z-index: 20;
+      &:after{
+        content: "LISTEN";
+      }
+      &:hover{
+        color: yellow;
+      }
     }
     .caption,
     .text{
@@ -62,21 +77,27 @@ body{
       padding: 15px;
       z-index: 20;
       .icon{
-        width: 100px;
-        height: 100px;
-        background: url(../images/noun_4502.svg) 13px 34px no-repeat;
-        background-size: 50%;
+        padding: @linkPadding;
         position: absolute; 
         bottom: 0;
         left: 0;
+        font-size:  30px;
         z-index: 21;
+        &:after{
+          content: "TEXT";
+        }
+        &:hover{
+          color: yellow;
+        }
       }
       .et{
         opacity: 0;
         transition: all 0.5s;
         max-height: 0;
         overflow: hidden;
-        padding-bottom: 50px;
+        padding: 50px 200px;
+        line-height:  1.6em;
+        font-family: "schoolbook-web",serif;
       }
       &:hover .et{
         max-height: 5000px;
@@ -90,8 +111,9 @@ body{
       .icon{
         left: auto;
         right: 0;
-        background: url(../images/noun_308073.svg) 33px 34px no-repeat;
-        background-size: 50%;
+        &:after{
+          content: "CAPTION";
+        }
       }
     }
 

@@ -2,6 +2,7 @@ const Q = require('q')
 const R = require('ramda')
 const soundManager = require('./soundmanager2.js').soundManager
 require('jquery-panelsnap')
+require('parallax.js')
 
 const soundcloudClientId = 'c4a4875052a77317635c5847302109cb'
 
@@ -16,8 +17,8 @@ $(function (){
   let currentSound
 
   $('body')
-    .panelSnap({
-    })
+    //.panelSnap({
+    //})
     .on('mouseenter', '.audio', function (){
 
       if ($(this).data('sound')) {
@@ -48,6 +49,20 @@ $(function (){
     .on('mouseleave', '.text,.caption', function (){
       $('.cover').removeClass('active')
     })
+  $(window).scroll(function (){
+      $('.parallax-mirror').each(function (){
+        var top = parseInt($(this).css('top'), 10)
+        var b = Math.floor(Math.abs(top) / 100)
+        //console.log(b)
+        $(this).css({
+          transform : 'blur('+b+'px)',
+          MozTransform : 'blur('+b+'px)',
+          WebkitTransform : 'blur('+b+'px)',
+          MsTransform : 'blur('+b+'px)'
+        })
+        console.log(this)
+      })
+  })
 
 
   $('.audio')
