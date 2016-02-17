@@ -7,6 +7,40 @@ body {
 * {
   box-sizing: border-box;
 }
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+h1 {
+  font-size: 1.4em;
+}
+h2 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  color: #000;
+  padding-top: 25px;
+}
+h2.yellow {
+  padding-top: 0px;
+}
+h3 {
+  font-size: 2em;
+  padding: 10px 0 30px;
+  line-height: 1.3em;
+}
+.yellow {
+  color: yellow;
+}
+hr {
+  border: 0;
+  height: 1px;
+  background: yellow;
+  width: 45vw;
+  margin-bottom: 10px;
+  line-height: 1.3em;
+}
 body {
   color: #fff;
   font-size: 18px;
@@ -14,7 +48,18 @@ body {
   font-family: 'Fjalla One', sans-serif;
 }
 body a {
-  color: #ccc;
+  color: #ffff99;
+  text-decoration: none;
+}
+body .menu {
+  position: fixed;
+  top: 33px;
+  left: 50px;
+  width: 50px;
+  height: 50px;
+  background: url(/images/icon_45019.svg) center center no-repeat;
+  background-size: 100%;
+  z-index: 20;
 }
 body .cover {
   width: 100%;
@@ -38,10 +83,23 @@ body > section {
   background-repeat: no-repeat;
   position: relative;
 }
+body > section .wrap {
+  width: 100%;
+  height: 100vh;
+  padding: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+body > section > .cover {
+  position: absolute;
+  opacity: 0.5;
+}
 body > section.title {
   background-color: #000;
 }
-body > section.vcenter {
+body > section .vcenter {
+  height: 80vh;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -49,7 +107,7 @@ body > section.vcenter {
   -ms-flex-align: center;
   align-items: center;
 }
-body > section.vcenter > div {
+body > section .vcenter > div {
   display: inline-block;
   margin: auto;
   text-align: center;
@@ -70,7 +128,7 @@ body > section .audio {
   z-index: 20;
 }
 body > section .audio:after {
-  content: "LISTEN";
+  content: "SOUND";
 }
 body > section .audio:hover {
   color: yellow;
@@ -94,7 +152,7 @@ body > section .text .icon {
 }
 body > section .caption .icon:after,
 body > section .text .icon:after {
-  content: "TEXT";
+  content: "COMMENTARY";
 }
 body > section .caption .icon:hover,
 body > section .text .icon:hover {
@@ -106,9 +164,9 @@ body > section .text .et {
   transition: all 0.5s;
   max-height: 0;
   overflow: hidden;
-  padding: 50px 200px;
+  padding: 60px 200px;
   line-height: 1.6em;
-  font-family: "schoolbook-web", serif;
+  font-family: "Lora", serif;
 }
 body > section .caption:hover .et,
 body > section .text:hover .et {
