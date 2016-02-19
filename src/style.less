@@ -20,13 +20,17 @@ h2 {
   color: #000;
   padding-top: 25px;
   &.yellow{
-    padding-top: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
+  }
+  &.lpt{
+    padding-top: 0px;
   }
 }
 h3 {
   font-size:  2em;
-  padding: 10px 0 30px;
+  padding: 0px 0 25px;
   line-height:  1.3em;
 }
 .yellow{
@@ -34,7 +38,7 @@ h3 {
 }
 hr{
   border: 0;
-  height: 1px;
+  height: 2px;
   background: yellow;
   width: 45vw;
   margin-bottom: 10px;
@@ -42,9 +46,11 @@ hr{
 }
 body{
   color: #fff;
+  background-color: #000;
   font-size:  18px;
   line-height:  1.2em;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "acumin-pro-extra-condensed",sans-serif;
+
   a{
     color: lighten(yellow, 30%);
     text-decoration: none; 
@@ -55,9 +61,22 @@ body{
     left: @linkPadding ;
     width: 50px;
     height: 50px;
-    background: url(/images/icon_45019.svg) center center no-repeat;
-    background-size: 100%;
+    /*background: url(/images/icon_45019.svg) center center no-repeat;*/
+    /*background-size: 100%;*/
     z-index: 20;
+    cursor: pointer;
+    hr{
+      width: 70%;
+      margin: auto;
+      background-color: #fff;
+      margin: 7px auto;
+      display: block; 
+    }
+    &:hover{
+      hr{
+        background-color: yellow;
+      }
+    }
   }
   .cover{
     width: 100%;
@@ -90,7 +109,7 @@ body{
     }
     > .cover{
       position: absolute; 
-      opacity: 0.5;
+      opacity: 0.4;
     }
     &.title{
       background-color: #000;

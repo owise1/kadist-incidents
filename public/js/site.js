@@ -11560,20 +11560,20 @@ $(function () {
   }).on('mouseleave', '.text,.caption', function () {
     $('.cover').removeClass('active');
   });
-  $(window).scroll(function () {
-    $('.parallax-mirror').each(function () {
-      var top = parseInt($(this).css('top'), 10);
-      var b = Math.floor(Math.abs(top) / 100);
-      //console.log(b)
-      $(this).css({
-        transform: 'blur(' + b + 'px)',
-        MozTransform: 'blur(' + b + 'px)',
-        WebkitTransform: 'blur(' + b + 'px)',
-        MsTransform: 'blur(' + b + 'px)'
-      });
-      console.log(this);
-    });
-  });
+  //$(window).scroll(function (){
+  //$('.parallax-mirror').each(function (){
+  //var top = parseInt($(this).css('top'), 10)
+  //var b = Math.floor(Math.abs(top) / 100)
+  ////console.log(b)
+  //$(this).css({
+  //transform : 'blur('+b+'px)',
+  //MozTransform : 'blur('+b+'px)',
+  //WebkitTransform : 'blur('+b+'px)',
+  //MsTransform : 'blur('+b+'px)'
+  //})
+  //console.log(this)
+  //})
+  //})
 
   $('.audio').each(function () {
     var _this2 = this;
@@ -11601,7 +11601,7 @@ $(function () {
   })
   */
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_500b4138.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_8cbcb486.js","/")
 },{"./../bower_components/parallax.js/parallax.min.js":1,"./soundmanager2.js":10,"1YiZ5S":5,"buffer":2,"jquery-panelsnap":6,"q":7,"ramda":8}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license

@@ -23,11 +23,15 @@ h2 {
   padding-top: 25px;
 }
 h2.yellow {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+h2.lpt {
   padding-top: 0px;
 }
 h3 {
   font-size: 2em;
-  padding: 10px 0 30px;
+  padding: 0px 0 25px;
   line-height: 1.3em;
 }
 .yellow {
@@ -35,7 +39,7 @@ h3 {
 }
 hr {
   border: 0;
-  height: 1px;
+  height: 2px;
   background: yellow;
   width: 45vw;
   margin-bottom: 10px;
@@ -43,9 +47,10 @@ hr {
 }
 body {
   color: #fff;
+  background-color: #000;
   font-size: 18px;
   line-height: 1.2em;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "acumin-pro-extra-condensed", sans-serif;
 }
 body a {
   color: #ffff99;
@@ -57,9 +62,20 @@ body .menu {
   left: 50px;
   width: 50px;
   height: 50px;
-  background: url(/images/icon_45019.svg) center center no-repeat;
-  background-size: 100%;
+  /*background: url(/images/icon_45019.svg) center center no-repeat;*/
+  /*background-size: 100%;*/
   z-index: 20;
+  cursor: pointer;
+}
+body .menu hr {
+  width: 70%;
+  margin: auto;
+  background-color: #fff;
+  margin: 7px auto;
+  display: block;
+}
+body .menu:hover hr {
+  background-color: yellow;
 }
 body .cover {
   width: 100%;
@@ -93,7 +109,7 @@ body > section .wrap {
 }
 body > section > .cover {
   position: absolute;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 body > section.title {
   background-color: #000;
