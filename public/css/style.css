@@ -30,7 +30,8 @@ h2.lpt {
   padding-top: 0px;
 }
 h3 {
-  font-size: 2em;
+  font-family: "Lora", serif;
+  font-size: 1.7em;
   padding: 0px 0 25px;
   line-height: 1.3em;
 }
@@ -39,7 +40,7 @@ h3 {
 }
 hr {
   border: 0;
-  height: 2px;
+  height: 3px;
   background: yellow;
   width: 45vw;
   margin-bottom: 10px;
@@ -56,27 +57,6 @@ body a {
   color: #ffff99;
   text-decoration: none;
 }
-body .menu {
-  position: fixed;
-  top: 33px;
-  left: 50px;
-  width: 50px;
-  height: 50px;
-  /*background: url(/images/icon_45019.svg) center center no-repeat;*/
-  /*background-size: 100%;*/
-  z-index: 20;
-  cursor: pointer;
-}
-body .menu hr {
-  width: 57%;
-  margin: auto;
-  background-color: #fff;
-  margin: 7px auto;
-  display: block;
-}
-body .menu:hover hr {
-  background-color: yellow;
-}
 body .cover {
   width: 100%;
   height: 100vh;
@@ -91,7 +71,7 @@ body .cover {
 body .cover.active {
   opacity: 0.5;
 }
-body > section {
+body #main > section {
   width: 100%;
   height: 100vh;
   color: #fff;
@@ -99,7 +79,7 @@ body > section {
   background-repeat: no-repeat;
   position: relative;
 }
-body > section .wrap {
+body #main > section .wrap {
   width: 100%;
   height: 100vh;
   padding: 37px;
@@ -107,14 +87,14 @@ body > section .wrap {
   position: relative;
   z-index: 5;
 }
-body > section > .cover {
+body #main > section > .cover {
   position: absolute;
   opacity: 0.4;
 }
-body > section.title {
+body #main > section.title {
   background-color: #000;
 }
-body > section .vcenter {
+body #main > section .vcenter {
   height: 80vh;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -123,42 +103,54 @@ body > section .vcenter {
   -ms-flex-align: center;
   align-items: center;
 }
-body > section .vcenter > div {
+body #main > section .vcenter > div {
   display: inline-block;
   margin: auto;
   text-align: center;
 }
-body > section > a {
+body #main > section > a {
   text-decoration: none;
   display: block;
 }
-body > section > a:hover {
+body #main > section > a:hover {
   color: yellow;
 }
-body > section .audio {
+body #main > section .audio {
   position: absolute;
   top: 0;
   right: 0;
   padding: 50px;
   font-size: 30px;
   z-index: 20;
+  cursor: pointer;
 }
-body > section .audio:after {
+body #main > section .audio:after {
   content: "SOUND";
 }
-body > section .audio:hover {
+body #main > section .audio.playing:hover,
+body #main > section .audio.playing {
   color: yellow;
 }
-body > section .caption,
-body > section .text {
+body #main > section .audio.playing:hover:after,
+body #main > section .audio.playing:after {
+  content: "STOP";
+}
+body #main > section .audio:hover {
+  color: yellow;
+}
+body #main > section .audio:hover:after {
+  content: "PLAY";
+}
+body #main > section .caption,
+body #main > section .text {
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 15px;
   z-index: 20;
 }
-body > section .caption .icon,
-body > section .text .icon {
+body #main > section .caption .icon,
+body #main > section .text .icon {
   padding: 50px;
   position: absolute;
   bottom: 0;
@@ -166,33 +158,136 @@ body > section .text .icon {
   font-size: 30px;
   z-index: 21;
 }
-body > section .caption .icon:after,
-body > section .text .icon:after {
+body #main > section .caption .icon:after,
+body #main > section .text .icon:after {
   content: "COMMENTARY";
 }
-body > section .caption .icon:hover,
-body > section .text .icon:hover {
+body #main > section .caption .icon:hover,
+body #main > section .text .icon:hover {
   color: yellow;
 }
-body > section .caption .et,
-body > section .text .et {
+body #main > section .caption .et,
+body #main > section .text .et {
   opacity: 0;
   transition: all 0.5s;
   max-height: 0;
-  overflow: hidden;
+  overflow: auto;
   padding: 60px 200px;
   line-height: 1.6em;
   font-family: "Lora", serif;
 }
-body > section .caption:hover .et,
-body > section .text:hover .et {
-  max-height: 5000px;
+body #main > section .caption:hover .et,
+body #main > section .text:hover .et {
+  max-height: 90vh;
   opacity: 1;
 }
-body > section .caption .icon {
+body #main > section .caption .icon {
   left: auto;
   right: 0;
 }
-body > section .caption .icon:after {
+body #main > section .caption .icon:after {
   content: "CAPTION";
+}
+.menu {
+  transition: all 0.5s;
+  position: fixed;
+  top: 33px;
+  left: 50px;
+  width: 40px;
+  height: 40px;
+  z-index: 1001;
+  /*background: url(/images/icon_45019.svg) center center no-repeat;*/
+  /*background-size: 100%;*/
+  cursor: pointer;
+}
+body.open .menu {
+  left: 320px;
+}
+body.open .menu .burger-icon {
+  background-color: transparent;
+}
+body.open .menu .burger-icon:before,
+body.open .menu .burger-icon:after {
+  background-color: yellow;
+}
+body.open .menu .burger-icon:before {
+  -webkit-transform: translateY(11px) rotate(45deg);
+  transform: translateY(11px) rotate(45deg);
+}
+body.open .menu .burger-icon:after {
+  -webkit-transform: translateY(-11px) rotate(-45deg);
+  transform: translateY(-11px) rotate(-45deg);
+}
+.menu hr {
+  width: 57%;
+  margin: auto;
+  background-color: #fff;
+  margin: 7px auto;
+  display: block;
+}
+.menu:hover hr {
+  background-color: yellow;
+}
+.menu .burger-icon {
+  position: relative;
+  margin-top: 11px;
+  margin-bottom: 11px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.menu .burger-icon,
+.menu .burger-icon:before,
+.menu .burger-icon:after {
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #ffffff;
+  transition-property: background-color, -webkit-transform;
+  transition-property: background-color, transform;
+  transition-duration: 0.3s;
+}
+.menu .burger-icon:before,
+.menu .burger-icon:after {
+  position: absolute;
+  content: "";
+}
+.menu .burger-icon:before {
+  top: -11px;
+}
+.menu .burger-icon:after {
+  top: 11px;
+}
+#main {
+  transition: all 0.5s;
+  left: 0px;
+  top: 0px;
+  width: 100vw;
+}
+body.open #main {
+  position: fixed;
+  left: 270px;
+}
+#basement {
+  transition: all 0.5s;
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  position: absolute;
+}
+body.open #basement {
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 270px;
+}
+#basement .wrap {
+  padding: 37px;
+}
+#basement ul,
+#basement li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }

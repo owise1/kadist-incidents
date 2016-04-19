@@ -11531,77 +11531,7 @@ soundManager.setup({
 $(function () {
   var currentSound = undefined;
 
-  $('body')
-  //.panelSnap({
-  //})
-  .on('mouseenter', '.audio', function () {
-
-    if ($(this).data('sound')) {
-      $(this).data('sound').play();
-    } else {
-      var url = $(this).data('audio');
-      var sound = soundManager.createSound({
-        id: url,
-        url: url,
-        autoPlay: true,
-        volume: 70,
-        onplay: function onplay() {}
-      });
-      $(this).data('sound', sound);
-    }
-    currentSound = $(this).data('sound');
-  }).on('mouseleave', '.audio', function () {
-    if (currentSound) {
-      currentSound.pause();
-      currentSound = false;
-    }
-  }).on('mouseenter', '.text,.caption', function () {
-    $('.cover').addClass('active');
-  }).on('mouseleave', '.text,.caption', function () {
-    $('.cover').removeClass('active');
-  });
-  //$(window).scroll(function (){
-  //$('.parallax-mirror').each(function (){
-  //var top = parseInt($(this).css('top'), 10)
-  //var b = Math.floor(Math.abs(top) / 100)
-  ////console.log(b)
-  //$(this).css({
-  //transform : 'blur('+b+'px)',
-  //MozTransform : 'blur('+b+'px)',
-  //WebkitTransform : 'blur('+b+'px)',
-  //MsTransform : 'blur('+b+'px)'
-  //})
-  //console.log(this)
-  //})
-  //})
-
-  $('.audio').each(function () {
-    var _this2 = this;
-
-    if (/soundcloud/.test($(this).data('audio'))) {
-      (function () {
-        var url = $(_this2).data('audio');
-        var _this = _this2;
-        $.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + soundcloudClientId + '&callback=?', function (playlist) {
-          $(_this).data('audio', playlist.stream_url + '?consumer_key=' + soundcloudClientId);
-        });
-      })();
-    }
-  });
-
-  /*
-  sound = soundManager.createSound({
-    id : url, 
-    url : url,
-    autoPlay: true,
-    volume : /morse/.test(url) ? 10 : 70,
-    onplay : function () {
-      d.resolve(h1)
-    }
-  })
-  */
-});
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_8cbcb486.js","/")
+  $('.js","/")
 },{"./../bower_components/parallax.js/parallax.min.js":1,"./soundmanager2.js":10,"1YiZ5S":5,"buffer":2,"jquery-panelsnap":6,"q":7,"ramda":8}],10:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license

@@ -1,7 +1,7 @@
 const Q = require('q')
 const R = require('ramda')
 const soundManager = require('./soundmanager2.js').soundManager
-require('jquery-panelsnap')
+// require('jquery-panelsnap')
 require('parallax.js')
 
 const soundcloudClientId = 'c4a4875052a77317635c5847302109cb'
@@ -17,31 +17,31 @@ $(function (){
   let currentSound
 
   $('body')
-    //.panelSnap({
-    //})
-    .on('mouseenter', '.audio', function (){
+    .on('click', '.audio', function (){
+      if ($(this).is('.playing')) {
+        if (currentSound) {
+          currentSound.pause()
+          currentSound = false
+        }
+      } else {
+        if ($(this).data('sound')) {
+          $(this).data('sound').play()
+        } else{
+          let url = $(this).data('audio')
+          let sound = soundManager.createSound({
+            id : url, 
+            url : url,
+            autoPlay: true,
+            volume : 70,
+            onplay : function () {
+            }
+          })
+          $(this).data('sound', sound)
+        }
+        currentSound = $(this).data('sound')
+      }
+      $(this).toggleClass('playing')
 
-      if ($(this).data('sound')) {
-        $(this).data('sound').play()
-      } else{
-        let url = $(this).data('audio')
-        let sound = soundManager.createSound({
-          id : url, 
-          url : url,
-          autoPlay: true,
-          volume : 70,
-          onplay : function () {
-          }
-        })
-        $(this).data('sound', sound)
-      }
-      currentSound = $(this).data('sound')
-    })
-    .on('mouseleave', '.audio', function (){
-      if (currentSound) {
-        currentSound.pause()
-        currentSound = false
-      }
     })
     .on('mouseenter', '.text,.caption', function (){
       $('.cover').addClass('active')
@@ -49,21 +49,22 @@ $(function (){
     .on('mouseleave', '.text,.caption', function (){
       $('.cover').removeClass('active')
     })
-  //$(window).scroll(function (){
-      //$('.parallax-mirror').each(function (){
-        //var top = parseInt($(this).css('top'), 10)
-        //var b = Math.floor(Math.abs(top) / 100)
-        ////console.log(b)
-        //$(this).css({
-          //transform : 'blur('+b+'px)',
-          //MozTransform : 'blur('+b+'px)',
-          //WebkitTransform : 'blur('+b+'px)',
-          //MsTransform : 'blur('+b+'px)'
-        //})
-        //console.log(this)
-      //})
-  //})
 
+  let _tout = false
+  $(window).scroll(function (){
+    if (_tout) _tout = clearTimeout(_tout)
+    _tout = setTimeout(() => {
+      let threshold = 100
+      $('.parallax-mirror').each(function (){
+        let top = parseInt($(this).css('top'))
+        if (top !== 0 && Math.abs(top) < threshold) {
+          let src = $(this).find('img').attr('src')
+          let $section = $('.parallax-window[data-image-src="'+src+'"]')
+          $('html,body').animate({ scrollTop : $section.offset().top + 'px' }, 300)
+        }
+      })
+    }, 80)
+  })
 
   $('.audio')
     .each(function (){
@@ -72,21 +73,12 @@ $(function (){
         let _this = this
         $.getJSON('http://api.soundcloud.com/resolve?url=' + url + '&format=json&consumer_key=' + soundcloudClientId + '&callback=?', function(playlist){
             $(_this).data('audio', playlist.stream_url + '?consumer_key=' + soundcloudClientId)
-        
         })
       }
     })
 
-  /*
-  sound = soundManager.createSound({
-    id : url, 
-    url : url,
-    autoPlay: true,
-    volume : /morse/.test(url) ? 10 : 70,
-    onplay : function () {
-      d.resolve(h1)
-    }
-  })
-  */
+  $('.menu').click(function(){
+    $('body').toggleClass('open')
+	});
 
 })
