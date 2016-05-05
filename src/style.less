@@ -1,5 +1,5 @@
 @linkPadding: 50px;
-@basementWidth: 270px;
+@basementWidth: 350px;
 
 .trans (@speed:0.5s){
     transition: all @speed;
@@ -110,6 +110,9 @@ body{
     }
   }
 }
+.yellow-line{
+    border-bottom: 2px solid yellow;
+}
 .chicago {
     .title-page{
         position: relative;
@@ -117,9 +120,6 @@ body{
             width: 100%;
             box-sizing: border-box;
             padding: 0px 70px;
-            .yellow-line{
-                border-bottom: 2px solid yellow;
-            }
         }
         .scroll{
             position: absolute;
@@ -300,14 +300,23 @@ body{
   #basement{
       .trans();
       height: 100vh;
-      width: 0;
+      width: @basementWidth;
+      left: -@basementWidth;
       overflow: hidden;
       position: absolute;
+      h2{
+          color: #fff;
+          text-transform: none;
+          &.yellow{
+              color: yellow;
+              text-transform: uppercase;
+              padding-top: 0;
+          }
+      }
       body.open &{
           top: 0;
           left: 0;
           z-index: 1000;
-          width: @basementWidth;
       }
       .wrap{
           padding: 37px;

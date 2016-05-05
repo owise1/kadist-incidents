@@ -10631,6 +10631,18 @@ soundManager.setup({
 
 $(function () {
   var currentSound = undefined;
+  var moving = false;
+
+  function scrollToSlide($slide) {
+    moving = true;
+    $('html,body').animate({ scrollTop: $slide.offset().top + 'px' }, 300, function () {
+      moving = false;
+    });
+  }
+  function turnEverythingOff() {
+    $('.cover').removeClass('active');
+    $('.text,.caption').removeClass('active');
+  }
 
   $('body').on('click', '.audio', function () {
     if ($(this).is('.playing')) {
@@ -10661,6 +10673,7 @@ $(function () {
     } else {
       $('.text,.caption').removeClass('active');
       $('.cover').addClass('active');
+      scrollToSlide($(this).closest('.parallax-window'));
     }
     $(this).toggleClass('active');
   });
@@ -10676,32 +10689,32 @@ $(function () {
     // parallax
     var c = $(window).height() / 2;
     var factor = 10;
+    var reachedTurnOffTextThreshold = true;
     $('.parallax-window').each(function () {
       var pos = $(this).offset().top - $(window).scrollTop();
       var thisCenter = pos + c;
       $(this).css({
         backgroundPosition: '50% ' + -(c - thisCenter) / 10 + 'px'
       });
+
+      // turn off commentary
+      if (Math.abs(pos) < 200) {
+        reachedTurnOffTextThreshold = false;
+      }
     });
+    if (reachedTurnOffTextThreshold && !moving) {
+      turnEverythingOff();
+    }
     // snapping
     if (_tout) _tout = clearTimeout(_tout);
     _tout = setTimeout(function () {
       var threshold = 100;
-      var withinTurnOffTextThreshold = true;
       $('.parallax-window').each(function () {
         var top = $(this).offset().top - $(window).scrollTop();
         if (top !== 0 && Math.abs(top) < threshold) {
-          $('html,body').animate({ scrollTop: $(this).offset().top + 'px' }, 300);
-        }
-
-        // turn off commentary
-        if (top < 200) {
-          withinTurnOffTextThreshold = false;
+          scrollToSlide($(this));
         }
       });
-      if (withinTurnOffTextThreshold) {
-        // $('.text,.caption').removeClass('active')
-      }
     }, 80);
   }).resize(function () {});
 
@@ -10723,7 +10736,7 @@ $(function () {
     $('body').toggleClass('open');
   });
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_10db75e7.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_21af7bbc.js","/")
 },{"./soundmanager2.js":8,"1YiZ5S":4,"buffer":1,"q":5,"ramda":6}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license

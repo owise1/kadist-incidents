@@ -104,6 +104,9 @@ body .cover {
 body .cover.active {
   opacity: 0.5;
 }
+.yellow-line {
+  border-bottom: 2px solid yellow;
+}
 .chicago .title-page {
   position: relative;
 }
@@ -111,9 +114,6 @@ body .cover.active {
   width: 100%;
   box-sizing: border-box;
   padding: 0px 70px;
-}
-.chicago .title-page .holder .yellow-line {
-  border-bottom: 2px solid yellow;
 }
 .chicago .title-page .scroll {
   position: absolute;
@@ -267,7 +267,7 @@ body .cover.active {
   cursor: pointer;
 }
 body.open .menu {
-  left: 320px;
+  left: 400px;
 }
 body.open .menu .burger-icon {
   background-color: transparent;
@@ -333,20 +333,29 @@ body.open .menu .burger-icon:after {
 }
 body.open #main {
   position: fixed;
-  left: 270px;
+  left: 350px;
 }
 #basement {
   transition: all 0.5s;
   height: 100vh;
-  width: 0;
+  width: 350px;
+  left: -350px;
   overflow: hidden;
   position: absolute;
+}
+#basement h2 {
+  color: #fff;
+  text-transform: none;
+}
+#basement h2.yellow {
+  color: yellow;
+  text-transform: uppercase;
+  padding-top: 0;
 }
 body.open #basement {
   top: 0;
   left: 0;
   z-index: 1000;
-  width: 270px;
 }
 #basement .wrap {
   padding: 37px;

@@ -14,6 +14,18 @@ soundManager.setup({
 
 $(function (){
   let currentSound
+  let moving = false
+
+  function scrollToSlide($slide){
+    moving = true
+    $('html,body').animate({ scrollTop : $slide.offset().top + 'px' }, 300, function (){
+      moving = false
+    })
+  }
+  function turnEverythingOff() {
+    $('.cover').removeClass('active')
+    $('.text,.caption').removeClass('active')
+  }
 
   $('body')
     .on('click', '.audio', function (){
@@ -48,6 +60,7 @@ $(function (){
       } else {
         $('.text,.caption').removeClass('active')
         $('.cover').addClass('active')
+        scrollToSlide($(this).closest('.parallax-window'))
       }
       $(this).toggleClass('active')
     })
@@ -64,32 +77,33 @@ $(function (){
       // parallax
       var c = $(window).height() / 2
       var factor = 10
+      let reachedTurnOffTextThreshold = true
       $('.parallax-window').each(function (){
         let pos = $(this).offset().top - $(window).scrollTop()
         let thisCenter = pos + c
         $(this).css({
           backgroundPosition : '50% ' + (-(c - thisCenter)/10) + 'px'
         })
+
+        // turn off commentary
+        if (Math.abs(pos) < 200) {
+          reachedTurnOffTextThreshold = false
+        }
       })
+      if (reachedTurnOffTextThreshold && !moving) {
+        turnEverythingOff()
+      }
       // snapping
       if (_tout) _tout = clearTimeout(_tout)
       _tout = setTimeout(() => {
         let threshold = 100
-        let withinTurnOffTextThreshold = true
         $('.parallax-window').each(function (){
           let top = $(this).offset().top - $(window).scrollTop()
           if (top !== 0 && Math.abs(top) < threshold) {
-            $('html,body').animate({ scrollTop : $(this).offset().top + 'px' }, 300)
+            scrollToSlide($(this))
           }
 
-          // turn off commentary
-          if (top < 200) {
-            withinTurnOffTextThreshold = false
-          }
         })
-        if (withinTurnOffTextThreshold) {
-          // $('.text,.caption').removeClass('active')
-        }
       }, 80)
     })
     .resize(function (){
