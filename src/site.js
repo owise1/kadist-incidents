@@ -2,7 +2,7 @@ const Q = require('q')
 const R = require('ramda')
 const soundManager = require('./soundmanager2.js').soundManager
 // require('jquery-panelsnap')
-require('parallax.js')
+// require('parallax.js')
 
 const soundcloudClientId = 'c4a4875052a77317635c5847302109cb'
 
@@ -11,7 +11,6 @@ soundManager.setup({
   onready : function () {
   }
 })
-
 
 $(function (){
   let currentSound
@@ -29,7 +28,7 @@ $(function (){
         } else{
           let url = $(this).data('audio')
           let sound = soundManager.createSound({
-            id : url, 
+            id : url,
             url : url,
             autoPlay: true,
             volume : 70,
@@ -43,28 +42,59 @@ $(function (){
       $(this).toggleClass('playing')
 
     })
-    .on('mouseenter', '.text,.caption', function (){
-      $('.cover').addClass('active')
-    })
-    .on('mouseleave', '.text,.caption', function (){
-      $('.cover').removeClass('active')
+    .on('click', '.text,.caption', function (){
+      if ($(this).hasClass('active')) {
+        $('.cover').removeClass('active')
+      } else {
+        $('.text,.caption').removeClass('active')
+        $('.cover').addClass('active')
+      }
+      $(this).toggleClass('active')
     })
 
-  let _tout = false
-  $(window).scroll(function (){
-    if (_tout) _tout = clearTimeout(_tout)
-    _tout = setTimeout(() => {
-      let threshold = 100
-      $('.parallax-mirror').each(function (){
-        let top = parseInt($(this).css('top'))
-        if (top !== 0 && Math.abs(top) < threshold) {
-          let src = $(this).find('img').attr('src')
-          let $section = $('.parallax-window[data-image-src="'+src+'"]')
-          $('html,body').animate({ scrollTop : $section.offset().top + 'px' }, 300)
-        }
-      })
-    }, 80)
+  $(".parallax-window").each(function (){
+    $(this).css({
+      backgroundImage : 'url('+$(this).data('image-src')+')'
+    })
   })
+
+  let _tout = false
+  $(window)
+    .scroll(function (){
+      // parallax
+      var c = $(window).height() / 2
+      var factor = 10
+      $('.parallax-window').each(function (){
+        let pos = $(this).offset().top - $(window).scrollTop()
+        let thisCenter = pos + c
+        $(this).css({
+          backgroundPosition : '50% ' + (-(c - thisCenter)/10) + 'px'
+        })
+      })
+      // snapping
+      if (_tout) _tout = clearTimeout(_tout)
+      _tout = setTimeout(() => {
+        let threshold = 100
+        let withinTurnOffTextThreshold = true
+        $('.parallax-window').each(function (){
+          let top = $(this).offset().top - $(window).scrollTop()
+          if (top !== 0 && Math.abs(top) < threshold) {
+            $('html,body').animate({ scrollTop : $(this).offset().top + 'px' }, 300)
+          }
+
+          // turn off commentary
+          if (top < 200) {
+            withinTurnOffTextThreshold = false
+          }
+        })
+        if (withinTurnOffTextThreshold) {
+          // $('.text,.caption').removeClass('active')
+        }
+      }, 80)
+    })
+    .resize(function (){
+
+    })
 
   $('.audio')
     .each(function (){

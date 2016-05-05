@@ -6,6 +6,11 @@
 }
 @import "../node_modules/less-burger/src/less/less-burger.less";
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 html,body{
   height: 100%;
   padding: 0;
@@ -14,28 +19,55 @@ html,body{
 *{
   box-sizing: border-box;
 }
+.pull-right{
+    float: right;
+}
+.pull-left{
+    float: left;
+}
+.serif{
+    font-family: "minion-pro-condensed",serif;
+}
+.sans{
+    font-family: "acumin-pro-condensed",sans-serif;
+}
 h1,h2,h3,h4{
   margin: 0;
 }
 h1{
-  font-size:  1.4em;
+  font-size:  1.2em;
+  font-weight: normal;
 }
 h2 {
-  font-size:  1.2em;
+  font-size:  0.9em;
   text-transform: uppercase;
   color: #000;
   padding-top: 25px;
+  font-weight: bold;
   &.yellow{
     padding-top: 10px;
-    padding-bottom: 10px;
-
+    padding-bottom: 3px;
+    font-weight: normal;
+  }
+  &.white{
+      color: transparent;
+      text-align: center;
   }
   &.lpt{
     padding-top: 0px;
   }
+  &.lrg{
+      font-size: 1.5em;
+      text-transform: none;
+      padding-top: 0px;
+  }
+  &.ttn{
+      text-transform: none;
+      padding-top: 0px;
+  }
 }
 h3 {
-  font-family: "Lora",serif;
+  .serif;
   font-size:  1.7em;
   padding: 0px 0 25px;
   line-height:  1.3em;
@@ -52,15 +84,15 @@ hr{
   line-height:  1.3em;
 }
 body{
+    .sans;
   color: #fff;
   background-color: #000;
-  font-size:  22px;
+  font-size:  28px;
 
   line-height:  1.2em;
-  font-family: "acumin-pro-extra-condensed",sans-serif;
 
   a{
-    color: lighten(yellow, 30%);
+    color: yellow;
     text-decoration: none; 
   }
   .cover{
@@ -77,17 +109,42 @@ body{
       opacity: 0.5;
     }
   }
+}
+.chicago {
+    .title-page{
+        position: relative;
+        .holder{
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0px 70px;
+            .yellow-line{
+                border-bottom: 2px solid yellow;
+            }
+        }
+        .scroll{
+            position: absolute;
+            bottom: 44px;
+            width: 100%;
+            background: url(../images/down.svg) center 70px no-repeat;
+            background-size: 200px auto;
+            padding-bottom: 80px;
+        }
+        
+    }
+}
   #main > section{
     width: 100%;
     height: 100vh;
     color: #fff;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 50% 0;
     position: relative; 
     .wrap{
       width: 100%;
       height: 100vh;
-      padding: 37px;
+      padding: 51px 0 0;
       text-align: center; 
       position: relative; 
       z-index: 5;
@@ -104,6 +161,7 @@ body{
       display: flex;
       align-items: center;
       > div{
+          width: 100%;
         display: inline-block;
         margin: auto;
         text-align: center; 
@@ -141,6 +199,8 @@ body{
           }
       }
     }
+
+  }
     .caption,
     .text{
       position: absolute; 
@@ -155,6 +215,7 @@ body{
         left: 0;
         font-size:  30px;
         z-index: 21;
+        cursor: pointer;
         &:after{
           content: "COMMENTARY";
         }
@@ -164,19 +225,24 @@ body{
       }
       .et{
         opacity: 0;
-        transition: all 0.5s;
+        transition: max-height 0.5s;
+        transition: opacity 0.5s;
         max-height: 0;
         overflow: auto;
-        padding: 60px 200px;
         line-height:  1.6em;
-        font-family: "Lora",serif;
+        padding: 0 200px;
+        .serif;
       }
-      &:hover .et{
-        max-height: 90vh;
-        opacity: 1;
+      &.active{
+          z-index: 19;
+        .et{
+            max-height: 90vh;
+            opacity: 1;
+            padding: 60px 200px;
+        }
       }
-      p{
-
+      &.active .icon:after{
+          content: "HIDE TEXT";
       }
     }
     .caption{
@@ -188,16 +254,13 @@ body{
         }
       }
     }
-
-  }
-}
 .menu{
     .trans();
     position: fixed; 
-    top: @linkPadding - 17px;
-    left: @linkPadding ;
-    width: 40px;
-    height: 40px;
+    top: 59px;
+    left: 71px;
+    width: 32px;
+    height: 32px;
     z-index: 1001;
     /*background: url(/images/icon_45019.svg) center center no-repeat;*/
     /*background-size: 100%;*/
@@ -205,7 +268,7 @@ body{
     body.open &{
         left: @linkPadding + @basementWidth;
         .burger-icon{
-            .burger-to-cross(3px, 8px, yellow);
+            .burger-to-cross(2px, 8px, yellow);
         }
     }
     hr{
@@ -221,7 +284,7 @@ body{
       }
     }
     .burger-icon{
-        .burger(40px, 3px, 8px, #fff);
+        .burger(32px, 2px, 8px, #fff);
     }
 }
 #main{
@@ -255,3 +318,13 @@ body{
           list-style: none;
       }
   }
+@media (min-width:1024px){
+    .caption,
+    .text{
+        &.active .et{
+            padding-left: 250px;
+            padding-right: 250px;
+        }
+    }
+
+}

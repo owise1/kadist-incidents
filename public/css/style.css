@@ -1,3 +1,8 @@
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 html,
 body {
   height: 100%;
@@ -7,6 +12,18 @@ body {
 * {
   box-sizing: border-box;
 }
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.serif {
+  font-family: "minion-pro-condensed", serif;
+}
+.sans {
+  font-family: "acumin-pro-condensed", sans-serif;
+}
 h1,
 h2,
 h3,
@@ -14,23 +31,39 @@ h4 {
   margin: 0;
 }
 h1 {
-  font-size: 1.4em;
+  font-size: 1.2em;
+  font-weight: normal;
 }
 h2 {
-  font-size: 1.2em;
+  font-size: 0.9em;
   text-transform: uppercase;
   color: #000;
   padding-top: 25px;
+  font-weight: bold;
 }
 h2.yellow {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 3px;
+  font-weight: normal;
+}
+h2.white {
+  color: transparent;
+  text-align: center;
 }
 h2.lpt {
   padding-top: 0px;
 }
+h2.lrg {
+  font-size: 1.5em;
+  text-transform: none;
+  padding-top: 0px;
+}
+h2.ttn {
+  text-transform: none;
+  padding-top: 0px;
+}
 h3 {
-  font-family: "Lora", serif;
+  font-family: "minion-pro-condensed", serif;
   font-size: 1.7em;
   padding: 0px 0 25px;
   line-height: 1.3em;
@@ -47,14 +80,14 @@ hr {
   line-height: 1.3em;
 }
 body {
+  font-family: "acumin-pro-condensed", sans-serif;
   color: #fff;
   background-color: #000;
-  font-size: 22px;
+  font-size: 28px;
   line-height: 1.2em;
-  font-family: "acumin-pro-extra-condensed", sans-serif;
 }
 body a {
-  color: #ffff99;
+  color: yellow;
   text-decoration: none;
 }
 body .cover {
@@ -71,30 +104,51 @@ body .cover {
 body .cover.active {
   opacity: 0.5;
 }
-body #main > section {
+.chicago .title-page {
+  position: relative;
+}
+.chicago .title-page .holder {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0px 70px;
+}
+.chicago .title-page .holder .yellow-line {
+  border-bottom: 2px solid yellow;
+}
+.chicago .title-page .scroll {
+  position: absolute;
+  bottom: 44px;
+  width: 100%;
+  background: url(../images/down.svg) center 70px no-repeat;
+  background-size: 200px auto;
+  padding-bottom: 80px;
+}
+#main > section {
   width: 100%;
   height: 100vh;
   color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 0;
   position: relative;
 }
-body #main > section .wrap {
+#main > section .wrap {
   width: 100%;
   height: 100vh;
-  padding: 37px;
+  padding: 51px 0 0;
   text-align: center;
   position: relative;
   z-index: 5;
 }
-body #main > section > .cover {
+#main > section > .cover {
   position: absolute;
   opacity: 0.4;
 }
-body #main > section.title {
+#main > section.title {
   background-color: #000;
 }
-body #main > section .vcenter {
+#main > section .vcenter {
   height: 80vh;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -103,19 +157,20 @@ body #main > section .vcenter {
   -ms-flex-align: center;
   align-items: center;
 }
-body #main > section .vcenter > div {
+#main > section .vcenter > div {
+  width: 100%;
   display: inline-block;
   margin: auto;
   text-align: center;
 }
-body #main > section > a {
+#main > section > a {
   text-decoration: none;
   display: block;
 }
-body #main > section > a:hover {
+#main > section > a:hover {
   color: yellow;
 }
-body #main > section .audio {
+#main > section .audio {
   position: absolute;
   top: 0;
   right: 0;
@@ -124,77 +179,88 @@ body #main > section .audio {
   z-index: 20;
   cursor: pointer;
 }
-body #main > section .audio:after {
+#main > section .audio:after {
   content: "SOUND";
 }
-body #main > section .audio.playing:hover,
-body #main > section .audio.playing {
+#main > section .audio.playing:hover,
+#main > section .audio.playing {
   color: yellow;
 }
-body #main > section .audio.playing:hover:after,
-body #main > section .audio.playing:after {
+#main > section .audio.playing:hover:after,
+#main > section .audio.playing:after {
   content: "STOP";
 }
-body #main > section .audio:hover {
+#main > section .audio:hover {
   color: yellow;
 }
-body #main > section .audio:hover:after {
+#main > section .audio:hover:after {
   content: "PLAY";
 }
-body #main > section .caption,
-body #main > section .text {
+.caption,
+.text {
   position: absolute;
   bottom: 0;
   width: 100%;
   padding: 15px;
   z-index: 20;
 }
-body #main > section .caption .icon,
-body #main > section .text .icon {
+.caption .icon,
+.text .icon {
   padding: 50px;
   position: absolute;
   bottom: 0;
   left: 0;
   font-size: 30px;
   z-index: 21;
+  cursor: pointer;
 }
-body #main > section .caption .icon:after,
-body #main > section .text .icon:after {
+.caption .icon:after,
+.text .icon:after {
   content: "COMMENTARY";
 }
-body #main > section .caption .icon:hover,
-body #main > section .text .icon:hover {
+.caption .icon:hover,
+.text .icon:hover {
   color: yellow;
 }
-body #main > section .caption .et,
-body #main > section .text .et {
+.caption .et,
+.text .et {
   opacity: 0;
-  transition: all 0.5s;
+  transition: max-height 0.5s;
+  transition: opacity 0.5s;
   max-height: 0;
   overflow: auto;
-  padding: 60px 200px;
   line-height: 1.6em;
-  font-family: "Lora", serif;
+  padding: 0 200px;
+  font-family: "minion-pro-condensed", serif;
 }
-body #main > section .caption:hover .et,
-body #main > section .text:hover .et {
+.caption.active,
+.text.active {
+  z-index: 19;
+}
+.caption.active .et,
+.text.active .et {
   max-height: 90vh;
   opacity: 1;
+  padding: 60px 200px;
 }
-body #main > section .caption .icon {
+.caption.active .icon:after,
+.text.active .icon:after {
+  content: "HIDE TEXT";
+}
+.caption .icon {
   left: auto;
   right: 0;
 }
-body #main > section .caption .icon:after {
+.caption .icon:after {
   content: "CAPTION";
 }
 .menu {
   transition: all 0.5s;
   position: fixed;
-  top: 33px;
-  left: 50px;
-  width: 40px;
-  height: 40px;
+  top: 59px;
+  left: 71px;
+  width: 32px;
+  height: 32px;
   z-index: 1001;
   /*background: url(/images/icon_45019.svg) center center no-repeat;*/
   /*background-size: 100%;*/
@@ -211,12 +277,12 @@ body.open .menu .burger-icon:after {
   background-color: yellow;
 }
 body.open .menu .burger-icon:before {
-  -webkit-transform: translateY(11px) rotate(45deg);
-  transform: translateY(11px) rotate(45deg);
+  -webkit-transform: translateY(10px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
 }
 body.open .menu .burger-icon:after {
-  -webkit-transform: translateY(-11px) rotate(-45deg);
-  transform: translateY(-11px) rotate(-45deg);
+  -webkit-transform: translateY(-10px) rotate(-45deg);
+  transform: translateY(-10px) rotate(-45deg);
 }
 .menu hr {
   width: 57%;
@@ -230,8 +296,8 @@ body.open .menu .burger-icon:after {
 }
 .menu .burger-icon {
   position: relative;
-  margin-top: 11px;
-  margin-bottom: 11px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -241,8 +307,8 @@ body.open .menu .burger-icon:after {
 .menu .burger-icon:before,
 .menu .burger-icon:after {
   display: block;
-  width: 40px;
-  height: 3px;
+  width: 32px;
+  height: 2px;
   background-color: #ffffff;
   transition-property: background-color, -webkit-transform;
   transition-property: background-color, transform;
@@ -254,10 +320,10 @@ body.open .menu .burger-icon:after {
   content: "";
 }
 .menu .burger-icon:before {
-  top: -11px;
+  top: -10px;
 }
 .menu .burger-icon:after {
-  top: 11px;
+  top: 10px;
 }
 #main {
   transition: all 0.5s;
@@ -290,4 +356,11 @@ body.open #basement {
   padding: 0;
   margin: 0;
   list-style: none;
+}
+@media (min-width: 1024px) {
+  .caption.active .et,
+  .text.active .et {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
 }
