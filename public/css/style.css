@@ -24,6 +24,9 @@ body {
 .sans {
   font-family: "acumin-pro-condensed", sans-serif;
 }
+.bs {
+  box-sizing: border-box;
+}
 h1,
 h2,
 h3,
@@ -38,7 +41,7 @@ h2 {
   font-size: 0.9em;
   text-transform: uppercase;
   color: #000;
-  padding-top: 25px;
+  padding-top: 15px;
   font-weight: bold;
 }
 h2.yellow {
@@ -49,6 +52,7 @@ h2.yellow {
 h2.white {
   color: transparent;
   text-align: center;
+  padding-top: 25px;
 }
 h2.lpt {
   padding-top: 0px;
@@ -62,11 +66,15 @@ h2.ttn {
   text-transform: none;
   padding-top: 0px;
 }
+.up {
+  position: relative;
+  top: -30px;
+}
 h3 {
-  font-family: "minion-pro-condensed", serif;
-  font-size: 1.7em;
-  padding: 0px 0 25px;
-  line-height: 1.3em;
+  font-family: "acumin-pro-condensed", sans-serif;
+  font-size: 1.3em;
+  padding: 0px 0 5px;
+  line-height: 1.1em;
 }
 .yellow {
   color: yellow;
@@ -82,7 +90,7 @@ hr {
 body {
   font-family: "acumin-pro-condensed", sans-serif;
   color: #fff;
-  background-color: #000;
+  background-color: #262626;
   font-size: 28px;
   line-height: 1.2em;
 }
@@ -103,6 +111,13 @@ body .cover {
 }
 body .cover.active {
   opacity: 0.5;
+  z-index: 4;
+}
+body.playing .audio {
+  display: none;
+}
+body.playing .audio.playing {
+  display: block;
 }
 .yellow-line {
   border-bottom: 2px solid yellow;
@@ -139,7 +154,7 @@ body .cover.active {
   padding: 51px 0 0;
   text-align: center;
   position: relative;
-  z-index: 5;
+  z-index: 3;
 }
 #main > section > .cover {
   position: absolute;
@@ -156,12 +171,19 @@ body .cover.active {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+  margin-top: -50px;
 }
 #main > section .vcenter > div {
   width: 100%;
   display: inline-block;
   margin: auto;
   text-align: center;
+}
+#main > section .vcenter > div h2.open {
+  color: #fff;
+  padding-top: 2px;
+  text-decoration: underline;
+  cursor: pointer;
 }
 #main > section > a {
   text-decoration: none;
@@ -190,11 +212,47 @@ body .cover.active {
 #main > section .audio.playing:after {
   content: "STOP";
 }
+#main > section .audio.playing {
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 #main > section .audio:hover {
   color: yellow;
 }
 #main > section .audio:hover:after {
   content: "PLAY";
+}
+.last {
+  padding: 50px;
+  box-sizing: border-box;
+  font-family: "minion-pro-condensed", serif;
+}
+.col-3 {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.col-3 > div {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.col-3 > div:nth-of-type(2) {
+  margin: 0 30px;
+}
+a.social {
+  background: url(../images/white_facebook.png) center center no-repeat #3b5999;
+  background-size: 90%;
+  display: inline-block;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+}
+a.social.twitter {
+  background: url(../images/white_twitterbird.png) center center no-repeat #55acee;
+  background-size: 80%;
 }
 .caption,
 .text {
@@ -233,6 +291,10 @@ body .cover.active {
   padding: 0 200px;
   font-family: "minion-pro-condensed", serif;
 }
+.caption .et h2,
+.text .et h2 {
+  color: #fff;
+}
 .caption.active,
 .text.active {
   z-index: 19;
@@ -247,12 +309,21 @@ body .cover.active {
 .text.active .icon:after {
   content: "HIDE TEXT";
 }
+.caption.hide .icon,
+.text.hide .icon {
+  display: none;
+}
 .caption .icon {
   left: auto;
   right: 0;
 }
 .caption .icon:after {
   content: "CAPTION";
+}
+.caption.active .et {
+  padding: 0px 200px 0px 50px;
+  font-family: "acumin-pro-condensed", sans-serif;
+  text-align: left;
 }
 .menu {
   transition: all 0.5s;
@@ -346,6 +417,7 @@ body.open #main {
 #basement h2 {
   color: #fff;
   text-transform: none;
+  font-weight: normal;
 }
 #basement h2.yellow {
   color: yellow;
@@ -367,7 +439,6 @@ body.open #basement {
   list-style: none;
 }
 @media (min-width: 1024px) {
-  .caption.active .et,
   .text.active .et {
     padding-left: 250px;
     padding-right: 250px;

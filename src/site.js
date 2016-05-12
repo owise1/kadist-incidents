@@ -24,12 +24,13 @@ $(function (){
   }
   function turnEverythingOff() {
     $('.cover').removeClass('active')
-    $('.text,.caption').removeClass('active')
+    $('.text,.caption').removeClass('active').removeClass('hide')
   }
 
   $('body')
     .on('click', '.audio', function (){
       if ($(this).is('.playing')) {
+        $('body').removeClass('playing')
         if (currentSound) {
           currentSound.pause()
           currentSound = false
@@ -50,6 +51,7 @@ $(function (){
           $(this).data('sound', sound)
         }
         currentSound = $(this).data('sound')
+        $('body').addClass('playing')
       }
       $(this).toggleClass('playing')
 
@@ -57,12 +59,19 @@ $(function (){
     .on('click', '.text,.caption', function (){
       if ($(this).hasClass('active')) {
         $('.cover').removeClass('active')
+        $('.text').removeClass('hide')
       } else {
         $('.text,.caption').removeClass('active')
         $('.cover').addClass('active')
-        scrollToSlide($(this).closest('.parallax-window'))
+        scrollToSlide($(this).closest('section'))
+        if ($(this).is('.caption')) {
+          $('.text').addClass('hide')
+        }
       }
       $(this).toggleClass('active')
+    })
+    .on('click', 'h2.open', function (){
+      $('.text.' + $(this).data('key')).click()
     })
 
   $(".parallax-window").each(function (){

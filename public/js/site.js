@@ -10641,11 +10641,12 @@ $(function () {
   }
   function turnEverythingOff() {
     $('.cover').removeClass('active');
-    $('.text,.caption').removeClass('active');
+    $('.text,.caption').removeClass('active').removeClass('hide');
   }
 
   $('body').on('click', '.audio', function () {
     if ($(this).is('.playing')) {
+      $('body').removeClass('playing');
       if (currentSound) {
         currentSound.pause();
         currentSound = false;
@@ -10665,17 +10666,24 @@ $(function () {
         $(this).data('sound', sound);
       }
       currentSound = $(this).data('sound');
+      $('body').addClass('playing');
     }
     $(this).toggleClass('playing');
   }).on('click', '.text,.caption', function () {
     if ($(this).hasClass('active')) {
       $('.cover').removeClass('active');
+      $('.text').removeClass('hide');
     } else {
       $('.text,.caption').removeClass('active');
       $('.cover').addClass('active');
-      scrollToSlide($(this).closest('.parallax-window'));
+      scrollToSlide($(this).closest('section'));
+      if ($(this).is('.caption')) {
+        $('.text').addClass('hide');
+      }
     }
     $(this).toggleClass('active');
+  }).on('click', 'h2.open', function () {
+    $('.text.' + $(this).data('key')).click();
   });
 
   $(".parallax-window").each(function () {
@@ -10736,7 +10744,7 @@ $(function () {
     $('body').toggleClass('open');
   });
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_21af7bbc.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a876f6a4.js","/")
 },{"./soundmanager2.js":8,"1YiZ5S":4,"buffer":1,"q":5,"ramda":6}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license
