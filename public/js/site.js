@@ -10640,6 +10640,7 @@ $(function () {
     });
   }
   function turnEverythingOff() {
+    $('body').removeClass('darker');
     $('.cover').removeClass('active');
     $('.text,.caption').removeClass('active').removeClass('hide');
   }
@@ -10673,6 +10674,7 @@ $(function () {
     if ($(this).hasClass('active')) {
       $('.cover').removeClass('active');
       $('.text').removeClass('hide');
+      $('body').removeClass('darker');
     } else {
       $('.text,.caption').removeClass('active');
       $('.cover').addClass('active');
@@ -10682,7 +10684,8 @@ $(function () {
       }
     }
     $(this).toggleClass('active');
-  }).on('click', 'h2.open', function () {
+  }).on('click', 'h2.open.intro', function () {
+    $('body').addClass('darker');
     $('.text.' + $(this).data('key')).click();
   });
 
@@ -10744,7 +10747,7 @@ $(function () {
     $('body').toggleClass('open');
   });
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_a876f6a4.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7c3de458.js","/")
 },{"./soundmanager2.js":8,"1YiZ5S":4,"buffer":1,"q":5,"ramda":6}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license

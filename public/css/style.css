@@ -113,6 +113,9 @@ body .cover.active {
   opacity: 0.5;
   z-index: 4;
 }
+body.darker .cover.active {
+  opacity: 0.8;
+}
 body.playing .audio {
   display: none;
 }
@@ -134,9 +137,9 @@ body.playing .audio.playing {
   position: absolute;
   bottom: 44px;
   width: 100%;
-  background: url(../images/down.svg) center 70px no-repeat;
-  background-size: 200px auto;
-  padding-bottom: 80px;
+  background: url(../images/down-arrow.svg) center 70px no-repeat;
+  background-size: 60px auto;
+  padding-bottom: 60px;
 }
 #main > section {
   width: 100%;
@@ -179,11 +182,15 @@ body.playing .audio.playing {
   margin: auto;
   text-align: center;
 }
-#main > section .vcenter > div h2.open {
+#main > section .vcenter > div h2.open,
+#main > section .vcenter > div h2 a {
   color: #fff;
   padding-top: 2px;
-  text-decoration: underline;
   cursor: pointer;
+}
+#main > section .vcenter > div h2.open:hover,
+#main > section .vcenter > div h2 a:hover {
+  color: yellow;
 }
 #main > section > a {
   text-decoration: none;
@@ -232,6 +239,9 @@ body.playing .audio.playing {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  font-size: 20px;
+  position: relative;
+  z-index: 3;
 }
 .col-3 > div {
   -webkit-flex: 1;
@@ -239,7 +249,7 @@ body.playing .audio.playing {
   flex: 1;
 }
 .col-3 > div:nth-of-type(2) {
-  margin: 0 30px;
+  margin: 0 40px;
 }
 a.social {
   background: url(../images/white_facebook.png) center center no-repeat #3b5999;

@@ -23,6 +23,7 @@ $(function (){
     })
   }
   function turnEverythingOff() {
+    $('body').removeClass('darker')
     $('.cover').removeClass('active')
     $('.text,.caption').removeClass('active').removeClass('hide')
   }
@@ -60,6 +61,7 @@ $(function (){
       if ($(this).hasClass('active')) {
         $('.cover').removeClass('active')
         $('.text').removeClass('hide')
+        $('body').removeClass('darker')
       } else {
         $('.text,.caption').removeClass('active')
         $('.cover').addClass('active')
@@ -70,7 +72,8 @@ $(function (){
       }
       $(this).toggleClass('active')
     })
-    .on('click', 'h2.open', function (){
+    .on('click', 'h2.open.intro', function (){
+      $('body').addClass('darker')
       $('.text.' + $(this).data('key')).click()
     })
 
