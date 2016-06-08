@@ -4,6 +4,7 @@ var less       = require('gulp-less')
 var browserify = require('gulp-browserify')
 var autoprefixer = require('gulp-autoprefixer')
 var babel = require("gulp-babel")
+var nunjucksRender = require('gulp-nunjucks-render')
 
 var paths = {
   scripts: [],
@@ -22,6 +23,14 @@ gulp.task('less', function(){
   .pipe(gulp.dest(paths.cssDest));
 });
 
+gulp.task('nunjucks', function() {
+  return gulp.src(paths.watchBase + '/locations/*.+(html|nunjucks)')
+    .pipe(nunjucksRender({
+      path: [paths.watchBase]
+    }))
+    .pipe(gulp.dest(paths.destBase))
+})
+
 gulp.task('js', function(){
   return gulp.src(paths.watchBase + 'site.js')
   .pipe(babel())
@@ -37,6 +46,7 @@ gulp.task('build',['less', 'js'])
 
 gulp.task('watch', function(){
   gulp.watch(paths.watchBase + '*.less', ['less']);
+  gulp.watch(paths.watchBase + '**/*.html', ['nunjucks']);
   gulp.watch([paths.watchBase + '*.js'], ['js']);
 });
 
