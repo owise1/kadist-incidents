@@ -34,6 +34,12 @@ html,body{
 .bs{
     box-sizing: border-box;
 }
+.flex{
+    display: flex;
+    &.flex-center{
+        justify-content: center;
+    }
+}
 h1,h2,h3,h4{
   margin: 0;
 }
@@ -59,6 +65,14 @@ h2 {
   }
   &.lpt{
     padding-top: 0px;
+  }
+  &.lpb{
+      padding-bottom: 0px;
+      margin-bottom: -3px;
+  }
+  &.med{
+      font-size: 1.3em;
+      line-height: 1.1;
   }
   &.lrg{
       font-size: 1.5em;
@@ -147,6 +161,17 @@ body{
         background: url(../images/down-arrow.svg) center 70px no-repeat;
         background-size: 40px auto;
         padding-bottom: 30px;
+    }
+    .jinja &{
+        .flex {
+            margin-bottom: 130px;
+            margin-top: 80px;
+            h2 {
+                width: 140px;
+                text-align: right;
+                margin: 0 40px;
+            }
+        }
     }
 }
   #main > section{
