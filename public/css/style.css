@@ -168,6 +168,19 @@ body.playing .audio.playing {
   text-align: right;
   margin: 0 40px;
 }
+.suzhou .title-page .vcenter {
+  height: 95vh !important;
+}
+.suzhou .title-page .scroll .center {
+  text-align: center;
+  position: absolute;
+  top: -40px;
+  width: 100%;
+}
+.suzhou .title-page .scroll .center h2 {
+  padding-top: 0px;
+  color: #fff;
+}
 #main > section {
   width: 100%;
   height: 100vh;
