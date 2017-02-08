@@ -168,15 +168,18 @@ body.playing .audio.playing {
   text-align: right;
   margin: 0 40px;
 }
+.lisbon .title-page .vcenter,
 .suzhou .title-page .vcenter {
   height: 95vh !important;
 }
+.lisbon .title-page .scroll .center,
 .suzhou .title-page .scroll .center {
   text-align: center;
   position: absolute;
   top: -40px;
   width: 100%;
 }
+.lisbon .title-page .scroll .center h2,
 .suzhou .title-page .scroll .center h2 {
   padding-top: 0px;
   color: #fff;
