@@ -10646,6 +10646,7 @@ $(function () {
   }
 
   $('body').on('click', '.audio', function () {
+
     if ($(this).is('.playing')) {
       $('body').removeClass('playing');
       if (currentSound) {
@@ -10653,7 +10654,18 @@ $(function () {
         currentSound = false;
       }
     } else {
-      if ($(this).data('sound')) {
+      if ($(this).data('video')) {
+        var v = $(this).data('video');
+        v[0].muted = false;
+        $(this).data('sound', {
+          play: function play() {
+            v[0].muted = false;
+          },
+          pause: function pause() {
+            v[0].muted = true;
+          }
+        });
+      } else if ($(this).data('sound')) {
         $(this).data('sound').play();
       } else {
         var url = $(this).data('audio');
@@ -10689,11 +10701,57 @@ $(function () {
     $('.text.' + $(this).data('key')).click();
   });
 
+  function positionVideos() {
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    var bestH = Math.floor(w / 16 * 9);
+    var bestW = Math.floor(h * 16 / 9);
+    var left = 0;
+    var top = 0;
+    if (bestH < h) {
+      left = -Math.floor((bestW - w) / 2);
+      w = bestW;
+    } else if (bestW < w) {
+      top = -Math.floor((bestH - h) / 2);
+      h = bestH;
+    }
+    var videoPosition = {
+      width: w,
+      height: h,
+      left: left,
+      top: top
+    };
+    $('video').css(videoPosition);
+  }
+
   $(".parallax-window").each(function () {
-    $(this).css({
-      backgroundImage: 'url(' + $(this).data('image-src') + ')'
-    });
+    var src = $(this).data('image-src');
+    var video = $(this).data('video-src');
+    if (src) {
+      $(this).css({
+        backgroundImage: 'url(' + src + ')'
+      });
+    }
+    if (video) {
+      if ($('html').is('.touch')) {
+        $(this).remove();
+        return;
+      }
+      var v = $('<video>').attr({
+        width: $(window).width(),
+        height: $(window).height(),
+        src: video,
+        autoplay: true,
+        muted: true,
+        loop: true,
+        controls: false
+      });
+      $(this).append(v);
+      var audio = $('<div class="audio">').data('video', v);
+      $(this).prepend(audio);
+    }
   });
+  positionVideos();
 
   var _tout = false;
   $(window).scroll(function () {
@@ -10727,7 +10785,7 @@ $(function () {
         }
       });
     }, 80);
-  }).resize(function () {});
+  }).resize(positionVideos);
 
   $('.audio').each(function () {
     var _this2 = this;
@@ -10747,7 +10805,7 @@ $(function () {
     $('body').toggleClass('open');
   });
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_7c3de458.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_86ec49e0.js","/")
 },{"./soundmanager2.js":8,"1YiZ5S":4,"buffer":1,"q":5,"ramda":6}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license

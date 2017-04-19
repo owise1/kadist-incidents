@@ -168,10 +168,12 @@ body.playing .audio.playing {
   text-align: right;
   margin: 0 40px;
 }
+.terengganu .title-page .vcenter,
 .lisbon .title-page .vcenter,
 .suzhou .title-page .vcenter {
   height: 95vh !important;
 }
+.terengganu .title-page .scroll .center,
 .lisbon .title-page .scroll .center,
 .suzhou .title-page .scroll .center {
   text-align: center;
@@ -179,6 +181,7 @@ body.playing .audio.playing {
   top: -40px;
   width: 100%;
 }
+.terengganu .title-page .scroll .center h2,
 .lisbon .title-page .scroll .center h2,
 .suzhou .title-page .scroll .center h2 {
   padding-top: 0px;
@@ -193,6 +196,11 @@ body.playing .audio.playing {
   background-attachment: fixed;
   background-position: 50% 0;
   position: relative;
+  overflow: hidden;
+}
+#main > section video {
+  position: absolute;
+  z-index: 2;
 }
 #main > section .wrap {
   width: 100%;
