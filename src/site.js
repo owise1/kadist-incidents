@@ -126,7 +126,7 @@ $(function (){
         $(this).remove()
         return
       }
-      var v = $('<video>').attr({
+      var v = $('<video>').prop({
         width: $(window).width(),
         height: $(window).height(),
         src: video,

@@ -10737,7 +10737,7 @@ $(function () {
         $(this).remove();
         return;
       }
-      var v = $('<video>').attr({
+      var v = $('<video>').prop({
         width: $(window).width(),
         height: $(window).height(),
         src: video,
@@ -10805,7 +10805,7 @@ $(function () {
     $('body').toggleClass('open');
   });
 });
-}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_86ec49e0.js","/")
+}).call(this,require("1YiZ5S"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_cd564185.js","/")
 },{"./soundmanager2.js":8,"1YiZ5S":4,"buffer":1,"q":5,"ramda":6}],8:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /** @license
