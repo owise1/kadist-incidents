@@ -168,6 +168,15 @@ body.playing .audio.playing {
   text-align: right;
   margin: 0 40px;
 }
+.yerevan .title-page .scroll {
+  bottom: 22px;
+}
+.yerevan .title-page .scroll .center {
+  top: 4px !important;
+}
+.yerevan .title-page .holder {
+  margin-top: 20px !important;
+}
 .yerevan .title-page .vcenter,
 .terengganu .title-page .vcenter,
 .lisbon .title-page .vcenter,
