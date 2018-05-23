@@ -177,12 +177,14 @@ body.playing .audio.playing {
 .yerevan .title-page .holder {
   margin-top: 20px !important;
 }
+.hobart .title-page .vcenter,
 .yerevan .title-page .vcenter,
 .terengganu .title-page .vcenter,
 .lisbon .title-page .vcenter,
 .suzhou .title-page .vcenter {
   height: 95vh !important;
 }
+.hobart .title-page .scroll .center,
 .yerevan .title-page .scroll .center,
 .terengganu .title-page .scroll .center,
 .lisbon .title-page .scroll .center,
@@ -192,12 +194,16 @@ body.playing .audio.playing {
   top: -40px;
   width: 100%;
 }
+.hobart .title-page .scroll .center h2,
 .yerevan .title-page .scroll .center h2,
 .terengganu .title-page .scroll .center h2,
 .lisbon .title-page .scroll .center h2,
 .suzhou .title-page .scroll .center h2 {
   padding-top: 0px;
   color: #fff;
+}
+.hobart .title-page .vcenter {
+  height: 100vh !important;
 }
 #main > section {
   width: 100%;
